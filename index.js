@@ -13,16 +13,6 @@ jsonf.forEach((person)=>{
 })
 async function addItem(name,email,grade,yearInDECA,Extracurriculars,MyersBriggs,Passions,BusinessInterests,Potato) {
   try {
-    let color;
-    if (yearInDECA=="1"){
-      color="blue_background";
-    }else if (yearInDECA=="2"){
-      color="green_background";
-    }else if (yearInDECA=="3"){
-      color="purple_background";
-    }else{
-      color="orange_background";
-    }
     let extra = Extracurriculars.split(";");
     let extracurriculars=[];
     extra.forEach((activity)=>{
@@ -31,7 +21,7 @@ async function addItem(name,email,grade,yearInDECA,Extracurriculars,MyersBriggs,
           "content":activity
         },
         "annotations":{
-          "color":programs[activity]
+          "color":(programs[activity]==='undefined'?"grey_background":programs[activity])
         }
       }
       extracurriculars.push(active);
@@ -104,7 +94,7 @@ async function addItem(name,email,grade,yearInDECA,Extracurriculars,MyersBriggs,
                 "content": ((yearInDECA!="1")?(yearInDECA+" years in DECA"):(yearInDECA)+"st year in DECA")
               },
               "annotations":{
-                "color":color
+                "color":years[yearInDECA]
               }
             }
           ]
